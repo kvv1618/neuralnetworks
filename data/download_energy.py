@@ -52,6 +52,7 @@ df.index = pd.to_datetime(df.index, errors="coerce")
 df = df.replace([np.inf, -np.inf], np.nan)
 df = df.ffill().bfill().dropna(axis=1, how="all")
 df = df.sort_index().interpolate(method="time", limit_direction="both").fillna(df.mean())
+df.to_csv("energy_data.csv", index=True)
 
 
 scaler = StandardScaler()
