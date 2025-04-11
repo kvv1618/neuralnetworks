@@ -7,3 +7,6 @@
 - https://www.ncei.noaa.gov/
 - https://cds.climate.copernicus.eu/
 - https://www.ncei.noaa.gov/cdo-web/
+
+#### Notes
+Total energy = Electricity + Natural Gas + Petroleum + Coal
