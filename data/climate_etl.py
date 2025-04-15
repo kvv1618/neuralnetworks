@@ -23,7 +23,7 @@ for lat in range(lat_range[0], lat_range[1], 5):
 global_df = global_df.drop_duplicates(subset=["date", "lat", "lon"], keep="last")
 global_df.index = pd.to_datetime(global_df["date"], errors="coerce")
 
-non_numeric_df = global_df.select_dtypes(exclude=["number"]).dropna(axis=1).reset_index(drop=True)
+non_numeric_df = global_df.select_dtypes(exclude=["number"]).dropna(axis=1).sort_index().reset_index(drop=True)
 numeric_df = global_df.select_dtypes(include=["number"])
 numeric_df = numeric_df.ffill().bfill().dropna(axis=1, how="all")
 numeric_df = numeric_df.sort_index().interpolate(method="time", limit_direction="both").fillna(numeric_df.mean(numeric_only=True)).dropna(axis=1).reset_index(drop=True)
