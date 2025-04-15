@@ -1,16 +1,29 @@
 import requests
 import pandas as pd
+import time
+import json
+import re
 
 lat_range = [30, 60]
 lon_range = [-120, -70]
-start_date = "1995-01-01"
-end_date = "2024-01-01"
+start_date = "1995-02-02"
+end_date = "2024-02-02"
 columns = ['temperature_2m_max', 'temperature_2m_min', 'sunrise', 'sunset', 'daylight_duration', 'sunshine_duration', 'rain_sum', 'showers_sum', 'snowfall_sum', 'precipitation_sum', 'precipitation_probability_max', 'wind_speed_10m_max', 'apparent_temperature_max', 'apparent_temperature_min', 'precipitation_hours', 'et0_fao_evapotranspiration', 'date']
 global_df = pd.DataFrame(columns=columns)
-for lat in range(lat_range[0], lat_range[1], 5):
-    for lon in range(lon_range[0], lon_range[1], 5):
+for lat in range(lat_range[0], lat_range[1], 10):
+    for lon in range(lon_range[0], lon_range[1], 10):
         base_url = f"https://archive-api.open-meteo.com/v1/archive?latitude={lat}&longitude={lon}&start_date={start_date}&end_date={end_date}&daily=temperature_2m_mean,temperature_2m_min,temperature_2m_max,apparent_temperature_mean,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,precipitation_sum,rain_sum,snowfall_sum,precipitation_hours"
-        data_json = requests.get(base_url).json()
+        while True:
+            data = requests.get(base_url)
+            if data.status_code != 200:
+                if json.loads(data._content.decode("utf-8"))["reason"] == r"^Hourly":
+                    print(f"Rate limit exceeded for lat: {lat}, lon: {lon}. Retrying in 1 hour.")
+                    time.sleep(60*60)
+                else:
+                    time.sleep(60)
+            else:
+                data_json = data.json()
+                break
         if "daily" not in data_json:
             continue
         df = pd.DataFrame(data_json["daily"])
@@ -19,7 +32,9 @@ for lat in range(lat_range[0], lat_range[1], 5):
         df = df.rename(columns={"latitude": "lat", "longitude": "lon"})
         df["lat"] = lat
         df["lon"] = lon
+        print(f"Processing lat: {lat}, lon: {lon}")
         global_df = pd.concat([global_df, df], ignore_index=True)
+        time.sleep(60)
 global_df = global_df.drop_duplicates(subset=["date", "lat", "lon"], keep="last")
 global_df.index = pd.to_datetime(global_df["date"], errors="coerce")
 
