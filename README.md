@@ -13,7 +13,11 @@
 - https://drive.google.com/drive/folders/1aMlG0TlEyeTlrExIoLWOMdqvpSN170X0?usp=sharing
 
 #### Notes
-Total energy = Electricity + Natural Gas + Petroleum + Coal
+- Total energy = Electricity + Natural Gas + Petroleum + Coal
+- Estimated electric energy consuption = electric generation * (1 - loss_factor)
+- Loss factor = 0.05
+- _Assumption: Total Generation value for 1st of each month in the dataset corresponds to that month's totla generated energy_
+
 
 ## Methodology
 Early phase:
