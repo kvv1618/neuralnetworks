@@ -3,6 +3,7 @@
 #### Energy Consumption Data Sources:
 - https://www.eia.gov/opendata/
 - https://dataminer2.pjm.com/list
+- https://ember-energy.org/data/us-electricity-data-explorer/
 #### Climate & Weather Data Sources:
 - https://open-meteo.com/en/docs/historical-weather-api
 - https://www.ncei.noaa.gov/
