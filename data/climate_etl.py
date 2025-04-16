@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import time
 import json
-import re
+import os
 
 lat_range = [30, 60]
 lon_range = [-120, -70]
@@ -12,11 +12,14 @@ columns = ['temperature_2m_max', 'temperature_2m_min', 'sunrise', 'sunset', 'day
 global_df = pd.DataFrame(columns=columns)
 for lat in range(lat_range[0], lat_range[1], 10):
     for lon in range(lon_range[0], lon_range[1], 10):
-        base_url = f"https://archive-api.open-meteo.com/v1/archive?latitude={lat}&longitude={lon}&start_date={start_date}&end_date={end_date}&daily=temperature_2m_mean,temperature_2m_min,temperature_2m_max,apparent_temperature_mean,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,daylight_duration,sunshine_duration,precipitation_sum,rain_sum,snowfall_sum,precipitation_hours"
+        base_url = f"https://archive-api.open-meteo.com/v1/archive?latitude={lat}&longitude={lon}&start_date={start_date}&end_date={end_date}&daily=temperature_2m_mean,temperature_2m_min,temperature_2m_max,apparent_temperature_mean,apparent_temperature_max,apparent_temperature_min,sunshine_duration,precipitation_sum,rain_sum,snowfall_sum,precipitation_hours"
         while True:
             data = requests.get(base_url)
             if data.status_code != 200:
-                if json.loads(data._content.decode("utf-8"))["reason"] == r"^Hourly":
+                print(json.loads(data._content.decode("utf-8"))["reason"])
+                if "Daily" in json.loads(data._content.decode("utf-8"))["reason"]:
+                    os._exit(0)
+                elif "Hourly" in json.loads(data._content.decode("utf-8"))["reason"]:
                     print(f"Rate limit exceeded for lat: {lat}, lon: {lon}. Retrying in 1 hour.")
                     time.sleep(60*60)
                 else:
