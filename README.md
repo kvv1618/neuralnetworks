@@ -12,6 +12,9 @@
 #### Drive links:
 - https://drive.google.com/drive/folders/1aMlG0TlEyeTlrExIoLWOMdqvpSN170X0?usp=sharing
 
+#### Midterm Presentation:
+- https://docs.google.com/presentation/d/1BE-IrNnKVPdXIWZVf5U4Y2PfKNhKmwraaL7ZZbJ_bfU/edit?usp=sharing
+
 #### Notes
 - Total energy = Electricity + Natural Gas + Petroleum + Coal
 - Estimated electric energy consumption = electric generation * (1 - loss_factor)
