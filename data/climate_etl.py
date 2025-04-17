@@ -45,6 +45,6 @@ for lat in range(lat_range[0], lat_range[1], 10):
         numeric_df = global_df.select_dtypes(include=["number"])
         numeric_df = numeric_df.ffill().bfill().dropna(axis=1, how="all")
         numeric_df = numeric_df.sort_index().interpolate(method="time", limit_direction="both").fillna(numeric_df.mean(numeric_only=True)).dropna(axis=1).reset_index(drop=True)
-        final_global_df = pd.concat([non_numeric_df, numeric_df], axis=1)
-        if not final_global_df.empty:
-            final_global_df.to_csv("climate_data.csv", index=False)
+        global_df = pd.concat([non_numeric_df, numeric_df], axis=1)
+        if not global_df.empty:
+            global_df.to_csv("climate_data.csv", index=False)
