@@ -1,6 +1,7 @@
 # neuralnetworks
 ## Data Source references
 #### Energy Consumption Data Sources:
+- https://www.kaggle.com/datasets/twinkle0705/state-wise-power-consumption-in-india
 - https://www.eia.gov/opendata/
 - https://dataminer2.pjm.com/list
 - https://ember-energy.org/data/us-electricity-data-explorer/
