@@ -12,6 +12,8 @@
 - https://www.ncei.noaa.gov/cdo-web/
 #### Drive links:
 - https://drive.google.com/drive/folders/1aMlG0TlEyeTlrExIoLWOMdqvpSN170X0?usp=sharing
+#### Colab link:
+- https://colab.research.google.com/drive/10mBRALNk1ep_lni0dVIpPjBIPrWHdcE7?usp=sharing
 
 #### Midterm Presentation:
 - https://docs.google.com/presentation/d/1BE-IrNnKVPdXIWZVf5U4Y2PfKNhKmwraaL7ZZbJ_bfU/edit?usp=sharing
