@@ -39,6 +39,7 @@ for lat in range(lat_range[0], lat_range[1], 2):
         df = pd.DataFrame(data_json["daily"])
         df["date"] = pd.to_datetime(df["time"])
         df = df.drop(columns=["time"])
+        df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d", errors="coerce")
         df = df.rename(columns={"latitude": "lat", "longitude": "lon"})
         df["lat"] = lat
         df["lon"] = lon
@@ -60,7 +61,7 @@ for lat in range(lat_range[0], lat_range[1], 2):
             else:
                 global_df = pd.concat([global_df, df], ignore_index=True)
 
-            global_df["date"] = pd.to_datetime(global_df["date"], errors="coerce")
+            global_df["date"] = pd.to_datetime(global_df["date"], format="%Y-%m-%d", errors="coerce")
             global_df = global_df.dropna(subset=["date"])
             global_df = global_df.drop_duplicates(subset=["date", "lat", "lon"], keep="last")
             global_df = global_df.sort_values(by=["date", "lat", "lon"]).reset_index(drop=True)
