@@ -13,7 +13,7 @@
 #### Drive links:
 - https://drive.google.com/drive/folders/1aMlG0TlEyeTlrExIoLWOMdqvpSN170X0?usp=sharing
 #### Colab link:
-- https://colab.research.google.com/drive/1M5NEr3OH-Z-LvmLTwA87sjmBO4albumM?usp=sharing
+- https://colab.research.google.com/drive/13hWxzCOYnDobnZT8vwD2NrvwRUxrL9Yv?usp=sharing
 
 #### Midterm Presentation:
 - https://docs.google.com/presentation/d/1BE-IrNnKVPdXIWZVf5U4Y2PfKNhKmwraaL7ZZbJ_bfU/edit?usp=sharing
